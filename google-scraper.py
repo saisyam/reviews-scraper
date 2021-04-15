@@ -1,9 +1,7 @@
 from bs4 import BeautifulSoup
 from splinter import Browser
 import time
-
-url = "https://www.google.com/maps/place/The+Breslin/@40.745572,-73.9902777,17z/data=!4m7!3m6!1s0x89c259a61b874f57:0xc5fd887f907ea722!8m2!3d40.745568!4d-73.988089!9m1!1b1"
-
+import sys
 
 def get_html(url, count):
     browser = Browser("chrome", headless=True)
@@ -38,6 +36,12 @@ def get_reviews(html):
             "review": review_text.replace("\n",'')
         }
 
-html = get_html(url, 25)
-for r in get_reviews(html):
-    print(r)
+
+f = open("urls.txt", "r")
+lines = f.readlines()
+f.close()
+count = 25
+for url in lines:
+    html = get_html(url, count)
+    for r in get_reviews(html):
+        print(r)

@@ -37,11 +37,15 @@ def get_reviews(html):
         }
 
 
-f = open("urls.txt", "r")
-lines = f.readlines()
-f.close()
-count = 25
-for url in lines:
-    html = get_html(url, count)
-    for r in get_reviews(html):
-        print(r)
+# python3 google-scraper.py <urls.txt> <count>
+if len(sys.argv) == 3:
+    f = open(sys.argv[1], "r")
+    lines = f.readlines()
+    f.close()
+    for url in lines:
+        html = get_html(url, int(sys.argv[2]))
+        for r in get_reviews(html):
+            print(r)
+else:
+    print("Usage: python3 google-scraper.py <urls.txt> <count>")
+    exit()

@@ -5,3 +5,10 @@ I am using Google Chrome browser in headless mode to load the page and do the sc
 
 I am using [Splinter](https://splinter.readthedocs.io/en/latest/) and [Beautifulsoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) to extract the HTML and parsing the HTML respectively.
 
+# Running the scraper
+You need to create `urls.txt` file as shown [here](https://github.com/saisyam/google-reviews-scraper/blob/main/urls.txt). You have pass the file path as parameter to the scraper along with the count of reviews you want to scrape.
+
+```shell
+$ python3 google-scraper.py urls.txt 30
+```
+The above command will scrape 30 reviews from each URL.

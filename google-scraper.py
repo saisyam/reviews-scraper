@@ -28,11 +28,14 @@ def get_reviews(html):
     reviews = section_div.find_all('div', {'class':'section-review'})
     for r in reviews:
         rsection = r.find_all('div', {'class':'section-review-line'})
+        title_section = rsection[0].find('div',{'class':'section-review-title'})
+        user = title_section.find('span').get_text().strip()
         stars = rsection[1].find('span', {'class':'section-review-stars'})['aria-label'].strip()
         review_text = rsection[1].find('div',{'class':'section-review-review-content'}).find('span',{'class':'section-review-text'}).get_text().strip()
         rating = int(stars.split(' ')[0])
         yield {
             "rating": rating,
+            "user": user,
             "review": review_text.replace("\n",'')
         }
 

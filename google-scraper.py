@@ -2,14 +2,21 @@ from bs4 import BeautifulSoup
 from splinter import Browser
 import time
 import sys
+from urllib.parse import unquote
+from selenium import webdriver
+import json
 
 def get_html(url, count):
+    #chrome_options = webdriver.ChromeOptions()
+    #chrome_options.add_argument(f'user-agent={ua.random}')
     browser = Browser("chrome", headless=True)
     browser.visit(url)
     time.sleep(2)
     rlen = get_review_count(browser.html)
+    print(rlen)
     while rlen < count:
-        browser.execute_script('document.querySelector("div.section-layout.section-scrollbox.scrollable-y.scrollable-show").scrollTop = document.querySelector("div.section-layout.section-scrollbox.scrollable-y.scrollable-show").scrollHeight')
+        #div.section-layout.section-scrollbox.scrollable-y.scrollable-show
+        browser.execute_script('document.querySelector("div.section-layout.section-scrollbox.mapsConsumerUiCommonScrollable__scrollable-y.mapsConsumerUiCommonScrollable__scrollable-show").scrollTop = document.querySelector("div.section-layout.section-scrollbox.mapsConsumerUiCommonScrollable__scrollable-y.mapsConsumerUiCommonScrollable__scrollable-show").scrollHeight')
         time.sleep(2)
         rlen = get_review_count(browser.html)
     html = browser.html
@@ -22,6 +29,11 @@ def get_review_count(html):
     reviews = section_div.find_all('div', {'class':'section-review'})
     return len(reviews)
 
+def extract_business_name(url):
+    tmp = url.split("@")
+    name = tmp[0].replace('https://www.google.com/maps/place/','')
+    name = unquote(name[:-1]).replace('+', ' ')
+    return name
 def get_reviews(html):
     soup = BeautifulSoup(html, "html5lib")
     section_div = soup.find('div',{'class':'section-layout'})
@@ -39,16 +51,17 @@ def get_reviews(html):
             "review": review_text.replace("\n",'')
         }
 
-
 # python3 google-scraper.py <urls.txt> <count>
 if len(sys.argv) == 3:
     f = open(sys.argv[1], "r")
     lines = f.readlines()
     f.close()
     for url in lines:
+        name = extract_business_name(url)
         html = get_html(url, int(sys.argv[2]))
         for r in get_reviews(html):
-            print(r)
+            r['business'] = name
+            print(json.dumps(r))
 else:
     print("Usage: python3 google-scraper.py <urls.txt> <count>")
     exit()

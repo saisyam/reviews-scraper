@@ -13,7 +13,6 @@ def get_html(url, count):
     browser.visit(url)
     time.sleep(2)
     rlen = get_review_count(browser.html)
-    print(rlen)
     while rlen < count:
         #div.section-layout.section-scrollbox.scrollable-y.scrollable-show
         browser.execute_script('document.querySelector("div.section-layout.section-scrollbox.mapsConsumerUiCommonScrollable__scrollable-y.mapsConsumerUiCommonScrollable__scrollable-show").scrollTop = document.querySelector("div.section-layout.section-scrollbox.mapsConsumerUiCommonScrollable__scrollable-y.mapsConsumerUiCommonScrollable__scrollable-show").scrollHeight')
@@ -48,7 +47,7 @@ def get_reviews(html):
         yield {
             "rating": rating,
             "user": user,
-            "review": review_text.replace("\n",'')
+            "review": review_text.replace("\n",'').encode('ascii', 'ignore').decode('UTF-8')
         }
 
 # python3 google-scraper.py <urls.txt> <count>

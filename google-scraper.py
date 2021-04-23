@@ -5,10 +5,11 @@ import sys
 from urllib.parse import unquote
 from selenium import webdriver
 import json
+from proxy import *
 
 def get_html(url, count):
-    #chrome_options = webdriver.ChromeOptions()
-    #chrome_options.add_argument(f'user-agent={ua.random}')
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--proxy-server=%s' % get_oxy_proxy())
     browser = Browser("chrome", headless=True)
     browser.visit(url)
     time.sleep(2)

@@ -9,7 +9,7 @@ from proxy import *
 
 def get_html(url, count):
     chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--proxy-server=%s' % get_oxy_proxy())
+    chrome_options.add_argument('--proxy-server=%s' % get_anonymous_proxy())
     browser = Browser("chrome", headless=True)
     browser.visit(url)
     time.sleep(2)

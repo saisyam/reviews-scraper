@@ -131,3 +131,4 @@ bin/
 include/
 pyvenv.cfg
 DS_Store
+data/

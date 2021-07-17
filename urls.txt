@@ -1,1 +1,2 @@
-https://www.google.com/maps/place/The+Breslin/@40.745572,-73.9902777,17z/data=!4m7!3m6!1s0x89c259a61b874f57:0xc5fd887f907ea722!8m2!3d40.745568!4d-73.988089!9m1!1b1
+https://www.google.com/maps/place/Baekjeong+NYC/@40.7469095,-73.9899002,16z/data=!4m7!3m6!1s0x0:0x715797ad337b6a20!8m2!3d40.7470796!4d-73.9850574!9m1!1b1
+https://www.google.com/maps/place/KazuNori:+The+Original+Hand+Roll+Bar/@40.7469095,-73.9899002,16z/data=!4m16!1m8!3m7!1s0x0:0x715797ad337b6a20!2sBaekjeong+NYC!8m2!3d40.7470796!4d-73.9850574!9m1!1b1!3m6!1s0x89c259a61019a6b1:0x34f7f76aeb0f124e!8m2!3d40.7451877!4d-73.9882378!9m1!1b1

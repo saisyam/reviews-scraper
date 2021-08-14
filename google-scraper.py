@@ -7,6 +7,36 @@ from selenium import webdriver
 import json
 from proxy import *
 import dateparser
+import re
+
+def get_business_info(url):
+    business = {}
+    business['base_url'] = url
+    browser = Browser("chrome", headless=False)
+    browser.visit(url)
+    time.sleep(5)
+    soup = BeautifulSoup(browser.html, "html5lib")
+    img_div = soup.select_one('div[class*="section-hero-header-image-hero-container"]')
+    print(img_div)
+    img = img_div.find("img").get("src")
+    business['img'] = img
+    addr_button = soup.select_one('button[data-item-id="address"]')
+    addr = addr_button['aria-label'].replace("Address: ", "").strip()
+    business['address'] = addr
+    business_name = soup.select_one('h1[class*="header-title-title"]').text.strip()
+    business['name'] = business_name
+    rating = soup.find("ol", {"class":"section-star-array"})['aria-label'].replace("stars", "").strip()
+    business['rating'] = float(rating)
+    total_reviews = soup.select_one('button:-soup-contains("reviews")').text
+    business['review_count'] = int(total_reviews.replace("reviews", "").strip().replace(",","")) 
+    res_type = soup.select_one('div[class="gm2-body-2"]').text
+    business['type'] = res_type.replace("·","")
+    business['source'] = "Google"
+    reviews_button = browser.find_by_text(total_reviews).click()
+    time.sleep(3)
+    business['reviews_url'] = browser.url
+    browser.quit()
+    return business
 
 def get_html(url, count):
     chrome_options = webdriver.ChromeOptions()
@@ -35,12 +65,6 @@ def get_review_count(html):
     reviews = soup.find_all('div', {'data-review-id': True, 'aria-label': True})
     return len(reviews)
 
-def extract_business_name(url):
-    tmp = url.split("@")
-    name = tmp[0].replace('https://www.google.com/maps/place/','')
-    name = unquote(name[:-1]).replace('+', ' ')
-    return name
-
 def get_reviews(html):
     soup = BeautifulSoup(html, "html5lib")
     reviews = soup.find_all('div', {'data-review-id': True, 'aria-label': True})
@@ -55,6 +79,12 @@ def get_reviews(html):
         text = content_div.select_one('span[class*="-text"]').text.strip()
         if len(text) == 0:
             continue
+        else:
+            if "(Translated by Google)" in text: 
+                text = text.replace("(Translated by Google) ", "")
+                if "(Original)" in text:
+                    idx = text.index("(Original)")
+                    text = text[0:idx]
 
         yield {
             "rating": rating,
@@ -70,14 +100,14 @@ if len(sys.argv) == 3:
     lines = f.readlines()
     f.close()
     for url in lines:
-        name = extract_business_name(url)
-        print("Processing URL for business: "+name)
-        f = open(name.replace(' ',"_").lower()+".json", "w", encoding='utf-8')
-
-        html = get_html(url, int(sys.argv[2]))
+        business = get_business_info(url)
+        business['reviews'] = []
+        print("Processing URL for business: "+business['name'])
+        f = open(business['name'].replace(' ',"_").lower()+".json", "w", encoding='utf-8')
+        html = get_html(business['reviews_url'], int(sys.argv[2]))
         for r in get_reviews(html):
-            r['business'] = name
-            json.dump(r, f, ensure_ascii=False, indent=4)
+            business['reviews'].append(r)
+        json.dump(business, f, ensure_ascii=False, indent=4)
         f.close()
 else:
     print("Usage: python3 google-scraper.py <urls.txt> <count>")

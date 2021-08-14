@@ -13,7 +13,6 @@ def get_business_info(url):
     time.sleep(5)
     soup = BeautifulSoup(browser.html, "html5lib")
     img_div = soup.select_one('div[class*="section-hero-header-image-hero-container"]')
-    print(img_div)
     img = img_div.find("img").get("src")
     business['img'] = img
     addr_button = soup.select_one('button[data-item-id="address"]')

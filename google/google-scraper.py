@@ -2,12 +2,8 @@ from bs4 import BeautifulSoup
 from splinter import Browser
 import time
 import sys
-from urllib.parse import unquote
-from selenium import webdriver
 import json
-from proxy import *
 import dateparser
-import re
 
 def get_business_info(url):
     business = {}

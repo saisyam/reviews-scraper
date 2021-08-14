@@ -35,8 +35,6 @@ def get_business_info(url):
     return business
 
 def get_html(url, count):
-    chrome_options = webdriver.ChromeOptions()
-    #chrome_options.add_argument('--proxy-server=%s' % get_anonymous_proxy())
     browser = Browser("chrome", headless=False)
     browser.visit(url)
     time.sleep(2)

@@ -6,13 +6,15 @@ import json
 import dateparser
 
 def get_business_info(url):
+    bname = url.split("/@")[0].split("/")[5].replace('+', ' ')
+    print(bname)
     business = {}
     business['base_url'] = url
     browser = Browser("chrome", headless=False)
     browser.visit(url)
     time.sleep(5)
     soup = BeautifulSoup(browser.html, "html5lib")
-    img_div = soup.select_one('div[class*="section-hero-header-image-hero-container"]')
+    img_div = soup.select_one('button[aria-label="Photo of '+bname+'"]')
     img = img_div.find("img").get("src")
     business['img'] = img
     addr_button = soup.select_one('button[data-item-id="address"]')
@@ -46,7 +48,7 @@ def get_html(url, count):
     rlen = get_review_count(browser.html)
     while rlen < count:
         #div.section-layout.section-scrollbox.scrollable-y.scrollable-show
-        browser.execute_script('document.querySelector("div.section-layout.section-scrollbox").scrollTop = document.querySelector("div.section-layout.section-scrollbox").scrollHeight')
+        browser.execute_script('document.querySelector("div.section-scrollbox").scrollTop = document.querySelector("div.section-scrollbox").scrollHeight')
         time.sleep(2)
         rlen = get_review_count(browser.html)
     html = browser.html
@@ -88,20 +90,22 @@ def get_reviews(html):
         }
 
 # python3 google-scraper.py <urls.txt> <count>
-if len(sys.argv) == 3:
+if len(sys.argv) == 2:
     f = open(sys.argv[1], "r")
     lines = f.readlines()
     f.close()
-    for url in lines:
+    for l in lines:
+        url = l.split("@@")[0]
+        count = int(l.split("@@")[1])
         business = get_business_info(url)
         business['reviews'] = []
         print("Processing URL for business: "+business['name'])
         f = open(business['name'].replace(' ',"_").lower()+".json", "w", encoding='utf-8')
-        html = get_html(business['reviews_url'], int(sys.argv[2]))
+        html = get_html(business['reviews_url'], count)
         for r in get_reviews(html):
             business['reviews'].append(r)
         json.dump(business, f, ensure_ascii=False, indent=4)
         f.close()
 else:
-    print("Usage: python3 google-scraper.py <urls.txt> <count>")
+    print("Usage: python3 google-scraper.py <urls.txt>")
     exit()

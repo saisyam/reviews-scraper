@@ -7,16 +7,15 @@ import dateparser
 
 def get_business_info(url):
     bname = url.split("/@")[0].split("/")[5].replace('+', ' ')
-    print(bname)
     business = {}
     business['base_url'] = url
-    browser = Browser("chrome", headless=False)
+    browser = Browser("chrome", headless=True)
     browser.visit(url)
     time.sleep(5)
     soup = BeautifulSoup(browser.html, "html5lib")
-    img_div = soup.select_one('button[aria-label="Photo of '+bname+'"]')
-    img = img_div.find("img").get("src")
-    business['img'] = img
+    #img_div = soup.select_one('button[aria-label="Photo of '+bname+'"]')
+    #img = img_div.find("img").get("src")
+    #business['img'] = img
     addr_button = soup.select_one('button[data-item-id="address"]')
     addr = addr_button['aria-label'].replace("Address: ", "").strip()
     business['address'] = addr
@@ -36,7 +35,7 @@ def get_business_info(url):
     return business
 
 def get_html(url, count):
-    browser = Browser("chrome", headless=False)
+    browser = Browser("chrome", headless=True)
     browser.visit(url)
     time.sleep(2)
     # sort and select newest for the list
@@ -72,7 +71,7 @@ def get_reviews(html):
         rating = int(stars.split(' ')[0])
         date = content_div.select_one('span[class*="-date"]').text.strip()
         text = content_div.select_one('span[class*="-text"]').text.strip()
-        if len(text) == 0:
+        if len(text) < 30:
             continue
         else:
             if "(Translated by Google)" in text: 

@@ -1,0 +1,10 @@
+https://www.google.com/maps/place/Di+Fara+Pizza/@40.6250267,-73.9637115,17z/data=!3m1!4b1!4m5!3m4!1s0x89c244c844866933:0xbde74981ea7251bf!8m2!3d40.6250516!4d-73.9615128@@200
+https://www.google.com/maps/place/Via+Carota/@40.7331437,-74.0058558,17z/data=!3m1!4b1!4m5!3m4!1s0x89c259937f4eb1af:0xe49ad5dc628370bb!8m2!3d40.7331437!4d-74.0036671@@200
+https://www.google.com/maps/place/Charles'+Pan+Fried+Chicken/@40.7778955,-73.9827697,17z/data=!3m1!4b1!4m5!3m4!1s0x89c2f67e346dfaef:0xdd49c9fc36bd9d58!8m2!3d40.7778955!4d-73.980581@@200
+https://www.google.com/maps/place/Ho+Foods/@40.7262861,-73.9870139,17z/data=!3m1!4b1!4m5!3m4!1s0x89c2599d374d857b:0x64d66138307f4738!8m2!3d40.7264414!4d-73.9847121@@200
+https://www.google.com/maps/place/A%26A+Bake+Doubles+and+Roti/@40.680491,-73.9501376,17z/data=!3m2!4b1!5s0x89c25b9aadacef93:0xd4233ac9b12d2560!4m5!3m4!1s0x89c25b9a9c409e85:0xfda803748eb61bf3!8m2!3d40.680491!4d-73.9479489@@200
+https://www.google.com/maps/place/Tanoreen/@40.6307916,-74.0299752,17z/data=!3m1!4b1!4m5!3m4!1s0x89c2455850946aa1:0x186c74b8256bb780!8m2!3d40.6307916!4d-74.0277865@@200
+https://www.google.com/maps/place/C%C6%A1m+T%E1%BA%A5m+Ninh+Ki%E1%BB%81u/@40.8669815,-73.900314,17z/data=!3m1!4b1!4m5!3m4!1s0x89c2f385ce1e53c9:0x35f2612b1752f7d8!8m2!3d40.8669815!4d-73.8981253@@200
+https://www.google.com/maps/place/Teranga+Harlem/@40.7963946,-73.9515443,17z/data=!3m1!4b1!4m5!3m4!1s0x89c2f7fb26e993e5:0x922673299ea410b!8m2!3d40.796389!4d-73.9493729@@200
+https://www.google.com/maps/place/COTE+Korean+Steakhouse/@40.7412889,-73.9934859,17z/data=!3m2!4b1!5s0x89c259a383857fdf:0xa12572c60c05bfdc!4m5!3m4!1s0x89c259a384775443:0x4ad3dc8a6c30ce40!8m2!3d40.7412889!4d-73.9912972@@200
+https://www.google.com/maps/place/Raoul's/@40.7261816,-74.0043194,17z/data=!3m1!4b1!4m5!3m4!1s0x89c2598db62c4c05:0xed703546cbc36db1!8m2!3d40.7262701!4d-74.0020686@@200

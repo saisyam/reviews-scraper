@@ -1,0 +1,10 @@
+https://www.google.com/maps/place/Oxomoco/@40.7298214,-73.9576647,17z/data=!3m1!4b1!4m5!3m4!1s0x89c25940eeb3ffff:0xb204737f07ea317b!8m2!3d40.729914!4d-73.9554864@@200
+https://www.google.com/maps/place/Gage+%26+Tollner/@40.691317,-73.9900497,17z/data=!3m1!4b1!4m5!3m4!1s0x89c25b692dfe9cc1:0x4caeddec3a211bfe!8m2!3d40.691317!4d-73.987861@@200
+https://www.google.com/maps/place/Petite+Crevette/@40.6839022,-74.0040266,17z/data=!3m1!4b1!4m5!3m4!1s0x89c25a5c1ef25c57:0x7bdfc9237cc92b7f!8m2!3d40.6839573!4d-74.0017955@@200
+https://www.google.com/maps/place/Olmsted/@40.6771583,-73.9709665,17z/data=!3m1!4b1!4m5!3m4!1s0x89c25ba650aadafd:0xb90c80f36ae5500!8m2!3d40.6771583!4d-73.9687778@@200
+https://www.google.com/maps/place/Dirt+Candy/@40.7178611,-73.9928941,17z/data=!3m2!4b1!5s0x89c259876b653ec7:0x291e38a25d8e6a60!4m5!3m4!1s0x89c2599d7b6d7905:0x13f746a075ed355f!8m2!3d40.7178611!4d-73.9907054@@200
+https://www.google.com/maps/place/Adda+Indian+Canteen/@40.7450126,-73.9364276,17z/data=!3m2!4b1!5s0x89c25ed4ef53b2bb:0x3e8b05c423710570!4m5!3m4!1s0x89c25ff7a5e3c723:0x2bb730fbe0c20890!8m2!3d40.7450126!4d-73.9342389@@200
+https://www.google.com/maps/place/The+Freakin+Rican%C2%AE/@40.7552526,-73.920577,17z/data=!3m1!4b1!4m5!3m4!1s0x89c259a66b4dfdcd:0xa5be18298e81bc39!8m2!3d40.7552526!4d-73.9183883@@200
+https://www.google.com/maps/place/Taverna+Kyclades/@40.7743819,-73.9101362,17z/data=!3m1!4b1!4m5!3m4!1s0x89c25f67b56f4af7:0xb81bc2d2b8adcec3!8m2!3d40.7743799!4d-73.90795@@200
+https://www.google.com/maps/place/Congee+Village/@40.718659,-73.9925427,17z/data=!3m1!4b1!4m5!3m4!1s0x89c25987185dccc7:0x337115f296625e4f!8m2!3d40.718659!4d-73.990354@@200
+https://www.google.com/maps/place/Kokomo/@40.7219794,-73.9619021,17z/data=!3m1!4b1!4m5!3m4!1s0x89c259793921e1f7:0x7d3398d9077fd049!8m2!3d40.7219651!4d-73.9597214@@200

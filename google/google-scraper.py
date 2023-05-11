@@ -19,45 +19,44 @@ def get_business_info(url):
     addr_button = soup.select_one('button[data-item-id="address"]')
     addr = addr_button['aria-label'].replace("Address: ", "").strip()
     business['address'] = addr
-    business_name = soup.select_one('h1[class*="header-title-title"]').text.strip()
+    business_name = soup.select_one('h1[class*="fontHeadlineLarge"]').text.strip()
     business['name'] = business_name
-    rating = soup.find("ol", {"class":"section-star-array"})['aria-label'].replace("stars", "").strip()
+    main_div = soup.select_one("div[role='main']")
+    fnt_medium_div = main_div.find_all("div", {"class":"fontBodyMedium"})
+    rating = fnt_medium_div[0].find("span", {"aria-hidden":"true"}).text.strip()
     business['rating'] = float(rating)
-    total_reviews = soup.select_one('button:-soup-contains("reviews")').text
-    business['review_count'] = int(total_reviews.replace("reviews", "").strip().replace(",","")) 
-    res_type = soup.select_one('div[class="gm2-body-2"]').text
+    total_reviews = soup.select_one('span:-soup-contains("(")').text
+    business['review_count'] = int(total_reviews.replace("(", "").replace(")", "").replace(",",""))
+    res_type = fnt_medium_div[1].select_one('button').text
     business['type'] = res_type.replace("·","")
     business['source'] = "Google"
-    reviews_button = browser.find_by_text(total_reviews).click()
+    tab_div = soup.select_one("div[role='tablist']")
+    tab_buttons = tab_div.find_all("button")
+    reviews_button = browser.find_by_text("Reviews").click()
     time.sleep(3)
     business['reviews_url'] = browser.url
     browser.quit()
     return business
 
-def get_html(url, count):
-    browser = Browser("chrome", headless=True)
-    browser.visit(url)
+def get_html(url, count, bname):
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    driver = webdriver.Chrome(options=options)
+    driver.get(url)
     time.sleep(2)
-    # sort and select newest for the list
-    browser.find_by_text("Sort").first.click()
+    driver.find_element_by_xpath("//button[@data-value='Sort']").click()
     time.sleep(2)
-    new_menu_item = browser.find_by_id("action-menu").find_by_tag("ul").find_by_tag("li")[1]
-    new_menu_item.click()
-    time.sleep(7)
-    rlen = get_review_count(browser.html)
-    while rlen < count:
-        #div.section-layout.section-scrollbox.scrollable-y.scrollable-show
-        browser.execute_script('document.querySelector("div.section-scrollbox").scrollTop = document.querySelector("div.section-scrollbox").scrollHeight')
-        time.sleep(2)
-        rlen = get_review_count(browser.html)
-    html = browser.html
-    browser.quit()
+    list_div = driver.find_element_by_id("action-menu").find_element_by_xpath("div[@data-index='1']").click()
+    scrollable_div = driver.find_element_by_xpath("//div[@aria-label='"+bname+"']/div[@tabindex='-1']")
+    for i in range(0,(round(count/5 - 1))):
+        driver.execute_script('arguments[0].scrollTop = arguments[0].scrollHeight', 
+                scrollable_div)
+        time.sleep(3)
+    html = driver.page_source
+    driver.quit()
     return html
-
-def get_review_count(html):
-    soup = BeautifulSoup(html, "html5lib")
-    reviews = soup.find_all('div', {'data-review-id': True, 'aria-label': True})
-    return len(reviews)
 
 def get_reviews(html):
     soup = BeautifulSoup(html, "html5lib")
@@ -69,8 +68,11 @@ def get_reviews(html):
         content_div = r.find("div", {'data-review-id': review_id})
         stars = content_div.find("span", {'role':'img'})['aria-label'].strip()
         rating = int(stars.split(' ')[0])
-        date = content_div.select_one('span[class*="-date"]').text.strip()
-        text = content_div.select_one('span[class*="-text"]').text.strip()
+        #date = content_div.select_one('span[class*="-date"]').text.strip()
+        text_div = soup.find("div", {'id': review_id})
+        text = ""
+        if text_div:
+            text = text_div.text.strip()
         if len(text) < 30:
             continue
         else:
@@ -84,7 +86,7 @@ def get_reviews(html):
             "rating": rating,
             "id": review_id,
             "user": user,
-            "date": dateparser.parse(date).strftime("%d-%m-%Y"),
+            #"date": dateparser.parse(date).strftime("%d-%m-%Y"),
             "review": text.replace("\n",'').encode('ascii', 'ignore').decode('UTF-8')
         }
 
@@ -94,13 +96,12 @@ if len(sys.argv) == 2:
     lines = f.readlines()
     f.close()
     for l in lines:
-        url = l.split("@@")[0]
-        count = int(l.split("@@")[1])
+        url = l
         business = get_business_info(url)
         business['reviews'] = []
         print("Processing URL for business: "+business['name'])
         f = open(business['name'].replace(' ',"_").lower()+".json", "w", encoding='utf-8')
-        html = get_html(business['reviews_url'], count)
+        html = get_html(business['reviews_url'], business['review_count']/2, business['name'])
         for r in get_reviews(html):
             business['reviews'].append(r)
         json.dump(business, f, ensure_ascii=False, indent=4)

@@ -1,10 +1,1 @@
-https://www.google.com/maps/place/Smoking+Pig+BBQ+Company/@37.3588832,-121.9049566,17z/data=!3m1!4b1!4m5!3m4!1s0x808fcae2cea80f79:0x57975756b25f0331!8m2!3d37.3588832!4d-121.9027679@@200
-https://www.google.com/maps/place/Paesano+Ristorante+Italiano/@37.3361417,-121.9009109,17z/data=!3m1!4b1!4m5!3m4!1s0x808fcca1d2bf0d31:0x6828a335733d66d5!8m2!3d37.3361463!4d-121.8987124@@200
-https://www.google.com/maps/place/Kochi/@40.7619926,-73.9956579,17z/data=!3m1!4b1!4m5!3m4!1s0x89c259548cb3c437:0x8e83dcd5a865bef9!8m2!3d40.7620156!4d-73.9935238@@200
-https://www.google.com/maps/place/Crown+Shy/@40.7065047,-74.0099602,17z/data=!3m2!4b1!5s0x89c25a163440300b:0xad5cd6efe8d4fc1!4m5!3m4!1s0x89c25a16344bffff:0xd7c97b5c890e7912!8m2!3d40.7065047!4d-74.0077715@@200
-https://www.google.com/maps/place/Dhamaka/@40.7182426,-73.9901789,17z/data=!3m2!4b1!5s0x89c25980d9c227db:0xa7be345b1ba49a42!4m5!3m4!1s0x89c259ed25db2327:0x376080ea1043c7bb!8m2!3d40.7182426!4d-73.9879902@@200
-https://www.google.com/maps/place/Atoboy/@40.7436565,-73.9866746,17z/data=!3m1!4b1!4m5!3m4!1s0x89c259a7bd69ec67:0xcbdf16685f285b19!8m2!3d40.7436565!4d-73.9844859@@200
-https://www.google.com/maps/place/Gramercy+Tavern/@40.7384555,-73.9906951,17z/data=!3m1!4b1!4m5!3m4!1s0x89c259a1820824bd:0x2b79dcdc251b8415!8m2!3d40.7385027!4d-73.988471@@200
-https://www.google.com/maps/place/Sushi+Nakazawa/@40.7318046,-74.006738,17z/data=!3m1!4b1!4m5!3m4!1s0x89c2599317340fb3:0xe039cb326a713b70!8m2!3d40.731758!4d-74.0045172@@200
-https://www.google.com/maps/place/Ugly+Baby/@40.6779619,-73.9982874,17z/data=!3m1!4b1!4m5!3m4!1s0x89c25a580a8714ed:0x1fbdbfdcf0296ffa!8m2!3d40.677962!4d-73.9961029@@200
-https://www.google.com/maps/place/L%26B+Spumoni+Gardens/@40.5947241,-73.983661,17z/data=!3m1!4b1!4m5!3m4!1s0x89c2445522653dab:0xbd45b8d4c4d774c9!8m2!3d40.5947225!4d-73.9814722@@200
+https://www.google.com/maps/place/Golden+Diner/@40.7111867,-73.9982482,16.41z/data=!3m1!5s0x89c259a383857fdf:0xa12572c60c05bfdc!4m14!1m7!3m6!1s0x89c259a384775443:0x4ad3dc8a6c30ce40!2sCOTE+Korean+Steakhouse!8m2!3d40.741046!4d-73.991421!16s%2Fg%2F11c7t448dr!3m5!1s0x89c25bb8f896e9d7:0x3783be16e6af1ced!8m2!3d40.7124271!4d-73.9941947!16s%2Fg%2F11f9xn4_1z
